@@ -1,0 +1,5 @@
+{
+  "name": "AgroBot",
+  "description": "AI-Powered Smart Agriculture Chatbot for Real-Time Farmer Support & Decision Intelligence.",
+  "requestFramePermissions": ["camera", "geolocation"]
+}
