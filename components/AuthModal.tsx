@@ -28,54 +28,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
     district: '',
   });
 
-  const verifyLocation = async (): Promise<boolean> => {
-    return new Promise((resolve, reject) => {
-      if (!navigator.geolocation) {
-        reject(new Error("Geolocation is not supported by your browser."));
-        return;
-      }
 
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          try {
-            const { latitude, longitude } = position.coords;
-            const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
-            if (!res.ok) throw new Error("Failed to fetch location data.");
-            
-            const data = await res.json();
-            const address = data.address || {};
-            
-            // Collect possible location names from the GPS data
-            const actualLocations = [
-              address.county,
-              address.state_district,
-              address.city,
-              address.town,
-              address.village,
-              address.state
-            ].filter(Boolean).map(loc => loc.toLowerCase());
-
-            const enteredDistrict = formData.district.toLowerCase().trim();
-            
-            // Check if the entered district matches any of the actual location names
-            const isMatch = actualLocations.some(loc => loc.includes(enteredDistrict) || enteredDistrict.includes(loc));
-            
-            if (isMatch) {
-              resolve(true);
-            } else {
-              reject(new Error(`Your GPS location does not match "${formData.district}". Please enter your true district.`));
-            }
-          } catch (err) {
-            reject(new Error("Could not verify your location. Please try again."));
-          }
-        },
-        (err) => {
-          reject(new Error("Please allow location access to verify your district."));
-        },
-        { timeout: 10000 }
-      );
-    });
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,8 +40,6 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
         if (!formData.district.trim()) {
           throw new Error("Please enter your district.");
         }
-        // Verify location using GPS
-        await verifyLocation();
       }
 
       const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
@@ -177,7 +128,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
                       placeholder="e.g. Wakiso"
                     />
-                    <p className="text-[10px] text-slate-500 mt-1">We will verify this using your device&apos;s GPS.</p>
+                    <p className="text-[10px] text-slate-500 mt-1">Enter your current district or region.</p>
                   </div>
                 </>
               )}

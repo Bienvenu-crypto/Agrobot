@@ -33,6 +33,8 @@ export default function IoTDashboard() {
     return () => clearTimeout(timer);
   }, []);
 
+  const lastWarningTime = React.useRef<number>(0);
+
   useEffect(() => {
     if (!isSimulating || !isMounted || data.length === 0) return;
 
@@ -46,6 +48,20 @@ export default function IoTDashboard() {
         const newMoisture = Math.max(0, Math.min(100, last.moisture + (Math.random() * 4 - 2)));
         const newTemp = Math.max(10, Math.min(40, last.temperature + (Math.random() * 2 - 1)));
         
+        // Check for moisture warning and notify (once every 10 mins max)
+        if (newMoisture < 30 && Date.now() - lastWarningTime.current > 600000) {
+          lastWarningTime.current = Date.now();
+          fetch('/api/notifications', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'alert',
+              title: 'Critical Soil Moisture',
+              message: `Soil moisture dropped to ${Math.round(newMoisture)}%. Immediate irrigation is recommended for your field.`
+            })
+          }).catch(() => {});
+        }
+
         newData.push({
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           moisture: Math.round(newMoisture),

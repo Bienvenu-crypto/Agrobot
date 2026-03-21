@@ -4,7 +4,7 @@ import { hashPassword, createSession, setSessionCookie } from '@/lib/auth';
 
 export async function POST(req: Request) {
   try {
-    const { name, email, password } = await req.json();
+    const { name, email, password, district } = await req.json();
 
     if (!name || !email || !password) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -18,17 +18,18 @@ export async function POST(req: Request) {
     const userId = crypto.randomUUID();
     const passwordHash = hashPassword(password);
 
-    db.prepare('INSERT INTO users (id, email, password_hash, name) VALUES (?, ?, ?, ?)').run(
+    db.prepare('INSERT INTO users (id, email, password_hash, name, district) VALUES (?, ?, ?, ?, ?)').run(
       userId,
       email,
       passwordHash,
-      name
+      name,
+      district
     );
 
     const sessionId = createSession(userId);
     await setSessionCookie(sessionId);
 
-    return NextResponse.json({ user: { id: userId, email, name } });
+    return NextResponse.json({ user: { id: userId, email, name, district } });
   } catch (error: any) {
     console.error('Registration error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

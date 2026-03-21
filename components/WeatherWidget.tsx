@@ -60,6 +60,17 @@ export default function WeatherWidget() {
           advice: details.advice,
           weatherCode: current.weather_code
         });
+
+        // Send notification about current advice
+        fetch('/api/notifications', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'info',
+            title: 'Weather Update',
+            message: `Condition: ${details.condition}. ${details.advice}`
+          })
+        }).catch(() => {});
       } catch (err) {
         console.error("Weather Error:", err);
         setError("Failed to load weather data.");

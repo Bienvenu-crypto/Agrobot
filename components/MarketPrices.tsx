@@ -44,6 +44,20 @@ export default function MarketPrices() {
         if (result.data && result.data.length > 0) {
           setSelectedCrop(result.data[0].crop);
           sendGAEvent({ event: 'market_trend_view', value: result.data[0].crop });
+
+          // Send notification for top trending crop
+          const topTrend = result.data.find((c: any) => c.trend === 'up');
+          if (topTrend) {
+            fetch('/api/notifications', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                type: 'info',
+                title: 'Market Opportunity',
+                message: `${topTrend.crop} prices are up ${topTrend.change}. It's a great time to list your harvest!`
+              })
+            }).catch(() => {});
+          }
         }
       } catch (err: any) {
         setError(err.message);
