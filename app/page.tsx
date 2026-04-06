@@ -37,12 +37,12 @@ export default function Page() {
 
   return (
     <main className="min-h-screen bg-[#F8F9FA] text-slate-900 font-sans">
-      <AuthModal 
-        isOpen={isAuthModalOpen} 
-        onClose={() => setIsAuthModalOpen(false)} 
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
         initialMode={authModalMode}
       />
-      
+
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/5 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between relative">
@@ -52,7 +52,7 @@ export default function Page() {
             </div>
             <span className="text-xl font-bold tracking-tight text-emerald-900">AgroBot</span>
           </div>
-          
+
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
             {!user ? (
               <button onClick={() => scrollToSection('chat')} className="cursor-pointer hover:text-emerald-600 transition-colors font-bold text-emerald-700">Advisory</button>
@@ -75,17 +75,17 @@ export default function Page() {
           <div className="flex items-center gap-4">
             {user && <NotificationBell />}
 
-            <button 
+            <button
               className="cursor-pointer md:hidden p-2 text-slate-400"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
-            
+
             <div className="hidden md:flex items-center gap-3 relative">
               {user && (
                 <>
-                  <div 
+                  <div
                     onClick={() => setShowUserMenu(!showUserMenu)}
                     className="w-8 h-8 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-700 font-bold text-sm cursor-pointer hover:bg-emerald-200 transition-colors"
                   >
@@ -93,7 +93,7 @@ export default function Page() {
                   </div>
                   <AnimatePresence>
                     {showUserMenu && (
-                      <motion.div 
+                      <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
@@ -103,7 +103,7 @@ export default function Page() {
                           <p className="font-bold text-slate-800 text-sm truncate">{user.name}</p>
                           <p className="text-xs text-slate-500 truncate">{user.email}</p>
                         </div>
-                        <button 
+                        <button
                           onClick={() => {
                             logout();
                             setShowUserMenu(false);
@@ -125,7 +125,7 @@ export default function Page() {
         {/* Mobile Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
@@ -133,7 +133,7 @@ export default function Page() {
             >
               <div className="flex flex-col gap-4 py-4 text-sm font-medium text-slate-600">
                 {!user ? (
-                   <button onClick={() => scrollToSection('chat')} className="cursor-pointer text-left px-2 py-2 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg">Advisory</button>
+                  <button onClick={() => scrollToSection('chat')} className="cursor-pointer text-left px-2 py-2 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg">Advisory</button>
                 ) : (
                   <>
                     <button onClick={() => scrollToSection('iot')} className="cursor-pointer text-left px-2 py-2 hover:bg-emerald-50 hover:text-emerald-600 rounded-lg">Sensors</button>
@@ -148,12 +148,12 @@ export default function Page() {
                     </Link>
                   </>
                 )}
-                
+
                 <div className="border-t border-black/5 pt-4 mt-2">
                   {user && (
                     <div className="px-2">
                       <p className="font-bold text-slate-800 mb-1">{user.name}</p>
-                      <button 
+                      <button
                         onClick={() => {
                           logout();
                           setIsMobileMenuOpen(false);
@@ -174,20 +174,20 @@ export default function Page() {
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Hero Section */}
         <div className="mb-12">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4"
           >
             Smart Farming <span className="text-emerald-600">Intelligence</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="text-lg text-slate-500 max-w-2xl leading-relaxed"
           >
-            Real-time decision support for Ugandan smallholder farmers. 
+            Real-time decision support for Ugandan smallholder farmers.
             Get expert advice, detect diseases, and stay ahead of market trends.
           </motion.p>
         </div>
@@ -211,7 +211,7 @@ export default function Page() {
                   <ChatInterface />
                 </section>
 
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   className="bg-slate-900 rounded-[2.5rem] p-12 text-white relative overflow-hidden text-center shadow-2xl"
@@ -225,13 +225,13 @@ export default function Page() {
                       Join thousands of elite farmers. Sign up now to access real-time soil sensors, market price alerts, smart crop calendars, and our secure trade marketplace.
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                      <button 
+                      <button
                         onClick={() => openAuthModal('signup')}
                         className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-2xl font-black text-lg transition-all shadow-xl shadow-emerald-500/20 active:scale-95"
                       >
                         Create Your Account
                       </button>
-                      <button 
+                      <button
                         onClick={() => openAuthModal('login')}
                         className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white px-10 py-5 rounded-2xl font-black text-lg transition-all border border-white/5"
                       >
