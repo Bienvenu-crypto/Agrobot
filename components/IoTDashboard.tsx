@@ -43,11 +43,11 @@ export default function IoTDashboard() {
         if (prev.length === 0) return prev;
         const newData = [...prev.slice(1)];
         const last = prev[prev.length - 1];
-        
+
         // Add some random walk to the data
         const newMoisture = Math.max(0, Math.min(100, last.moisture + (Math.random() * 4 - 2)));
         const newTemp = Math.max(10, Math.min(40, last.temperature + (Math.random() * 2 - 1)));
-        
+
         // Check for moisture warning and notify (once every 10 mins max)
         if (newMoisture < 30 && Date.now() - lastWarningTime.current > 600000) {
           lastWarningTime.current = Date.now();
@@ -59,7 +59,7 @@ export default function IoTDashboard() {
               title: 'Critical Soil Moisture',
               message: `Soil moisture dropped to ${Math.round(newMoisture)}%. Immediate irrigation is recommended for your field.`
             })
-          }).catch(() => {});
+          }).catch(() => { });
         }
 
         newData.push({
@@ -99,11 +99,10 @@ export default function IoTDashboard() {
           </h2>
           <p className="text-sm text-slate-500">Real-time soil and environmental monitoring</p>
         </div>
-        <button 
+        <button
           onClick={() => setIsSimulating(!isSimulating)}
-          className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-2 transition-colors ${
-            isSimulating ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600'
-          }`}
+          className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-2 transition-colors ${isSimulating ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600'
+            }`}
         >
           <RefreshCw size={14} className={isSimulating ? 'animate-spin' : ''} />
           {isSimulating ? 'Live Syncing' : 'Paused'}
@@ -112,7 +111,7 @@ export default function IoTDashboard() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
         {/* Moisture Card */}
-        <motion.div 
+        <motion.div
           initial={{ scale: 0.95, opacity: 0.8 }}
           animate={{ scale: 1, opacity: 1 }}
           className={`p-4 rounded-xl border ${moistureWarning ? 'bg-red-50 border-red-100' : 'bg-blue-50 border-blue-100'}`}
@@ -131,7 +130,7 @@ export default function IoTDashboard() {
         </motion.div>
 
         {/* Temperature Card */}
-        <motion.div 
+        <motion.div
           initial={{ scale: 0.95, opacity: 0.8 }}
           animate={{ scale: 1, opacity: 1 }}
           className="p-4 rounded-xl bg-orange-50 border border-orange-100"
@@ -145,7 +144,7 @@ export default function IoTDashboard() {
         </motion.div>
 
         {/* pH Card */}
-        <motion.div 
+        <motion.div
           initial={{ scale: 0.95, opacity: 0.8 }}
           animate={{ scale: 1, opacity: 1 }}
           className="p-4 rounded-xl bg-emerald-50 border border-emerald-100"
@@ -168,25 +167,25 @@ export default function IoTDashboard() {
             <XAxis dataKey="time" stroke="#94a3b8" fontSize={12} tickMargin={10} />
             <YAxis yAxisId="left" stroke="#3b82f6" fontSize={12} domain={[0, 100]} />
             <YAxis yAxisId="right" orientation="right" stroke="#f97316" fontSize={12} domain={[0, 50]} />
-            <Tooltip 
+            <Tooltip
               contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
             />
-            <Line 
+            <Line
               yAxisId="left"
-              type="monotone" 
-              dataKey="moisture" 
+              type="monotone"
+              dataKey="moisture"
               name="Moisture (%)"
-              stroke="#3b82f6" 
+              stroke="#3b82f6"
               strokeWidth={3}
               dot={false}
               activeDot={{ r: 6 }}
             />
-            <Line 
+            <Line
               yAxisId="right"
-              type="monotone" 
-              dataKey="temperature" 
+              type="monotone"
+              dataKey="temperature"
               name="Temp (°C)"
-              stroke="#f97316" 
+              stroke="#f97316"
               strokeWidth={3}
               dot={false}
             />

@@ -85,9 +85,9 @@ export default function ResourceLibrary() {
             <BookOpen size={20} className="text-emerald-600" />
             Learning Resources
           </h3>
-          <a 
-            href="https://www.fao.org/publications/en" 
-            target="_blank" 
+          <a
+            href="https://www.fao.org/publications/en"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-xs font-bold text-emerald-600 hover:text-emerald-700 uppercase tracking-wider"
           >
@@ -97,8 +97,8 @@ export default function ResourceLibrary() {
 
         <div className="space-y-4">
           {resources.map((resource, index) => (
-            <button 
-              key={index} 
+            <button
+              key={index}
               onClick={() => setSelectedResource(resource)}
               className="cursor-pointer w-full text-left group flex items-start gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100"
             >
@@ -129,14 +129,14 @@ export default function ResourceLibrary() {
       <AnimatePresence>
         {selectedResource && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedResource(null)}
               className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm cursor-pointer"
             />
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -152,21 +152,21 @@ export default function ResourceLibrary() {
                     <p className="text-xs text-slate-500">{selectedResource.source}</p>
                   </div>
                 </div>
-                <button 
+                <button
                   onClick={() => setSelectedResource(null)}
                   className="cursor-pointer p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
                 >
                   <X size={20} />
                 </button>
               </div>
-              
+
               <div className="flex-1 overflow-y-auto p-6 bg-slate-50 relative min-h-[300px] md:min-h-[400px]">
                 {selectedResource.type === 'Video' ? (
                   <div className="aspect-video w-full rounded-xl overflow-hidden shadow-sm border border-black/5">
-                    <iframe 
-                      src={selectedResource.content} 
+                    <iframe
+                      src={selectedResource.content}
                       className="w-full h-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
                   </div>

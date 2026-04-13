@@ -43,7 +43,7 @@ export default function WeatherWidget() {
         const response = await fetch(`/api/weather?lat=${lat}&lon=${lon}`);
         if (!response.ok) throw new Error('Weather API failed');
         const data = await response.json();
-        
+
         if (data.error) throw new Error(data.error);
 
         const current = data.current;
@@ -70,7 +70,7 @@ export default function WeatherWidget() {
             title: 'Weather Update',
             message: `Condition: ${details.condition}. ${details.advice}`
           })
-        }).catch(() => {});
+        }).catch(() => { });
       } catch (err) {
         console.error("Weather Error:", err);
         setError("Failed to load weather data.");

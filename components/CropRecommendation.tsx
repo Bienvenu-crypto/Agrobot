@@ -30,7 +30,7 @@ export default function CropRecommendation() {
     try {
       const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
       if (!apiKey) throw new Error("API Key missing");
-      
+
       const ai = new GoogleGenAI({ apiKey });
       const prompt = `Act as an expert agronomist. I have a farm with the following soil and environmental parameters:
 - Nitrogen (N): ${formData.nitrogen} mg/kg
@@ -96,8 +96,8 @@ Based on these parameters, recommend the top 3 most suitable crops to plant. For
               <input type="number" name="temperature" value={formData.temperature} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-emerald-500 outline-none" required />
             </div>
           </div>
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             disabled={loading}
             className="w-full bg-emerald-600 text-white rounded-xl py-3 font-bold text-sm hover:bg-emerald-700 transition-colors disabled:opacity-70 flex items-center justify-center gap-2"
           >
@@ -108,8 +108,8 @@ Based on these parameters, recommend the top 3 most suitable crops to plant. For
 
         <div className="bg-slate-50 rounded-xl border border-slate-200 p-4 h-full min-h-[250px] overflow-y-auto">
           {result ? (
-            <motion.div 
-              initial={{ opacity: 0 }} 
+            <motion.div
+              initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="prose prose-sm prose-emerald max-w-none"
             >

@@ -69,21 +69,21 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
           onClick={onClose}
         />
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden"
         >
-          <button 
+          <button
             onClick={onClose}
             className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
           >
@@ -96,7 +96,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
                 <Sprout size={32} />
               </div>
             </div>
-            
+
             <h2 className="text-2xl font-bold text-center text-slate-900 mb-2">
               {isLogin ? 'Welcome back' : 'Create an account'}
             </h2>
@@ -132,7 +132,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
                   </div>
                 </>
               )}
-              
+
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Email Address</label>
                 <input
@@ -175,7 +175,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
 
             <div className="mt-6 text-center text-sm text-slate-500">
               {isLogin ? "Don't have an account? " : "Already have an account? "}
-              <button 
+              <button
                 onClick={() => {
                   setIsLogin(!isLogin);
                   setError('');

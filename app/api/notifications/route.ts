@@ -3,18 +3,27 @@ import { db } from '@/lib/db';
 import { cookies } from 'next/headers';
 import crypto from 'crypto';
 
-// Helper to get authenticated marketplace user ID
+// Helper to get authenticated user ID
 async function getUserId() {
   const cookieStore = await cookies();
-  const sessionId = cookieStore.get('mp_session')?.value;
-  if (!sessionId) return null;
+  
+  const mpSessionId = cookieStore.get('mp_session')?.value;
+  if (mpSessionId) {
+    const session = db
+      .prepare('SELECT user_id FROM marketplace_sessions WHERE id = ?')
+      .get(mpSessionId) as any;
+    if (session) return session.user_id;
+  }
 
-  const session = db
-    .prepare('SELECT user_id FROM marketplace_sessions WHERE id = ?')
-    .get(sessionId) as any;
-  if (!session) return null;
+  const sessionId = cookieStore.get('agrobot_session')?.value;
+  if (sessionId) {
+    const session = db
+      .prepare('SELECT user_id FROM sessions WHERE id = ?')
+      .get(sessionId) as any;
+    if (session) return session.user_id;
+  }
 
-  return session.user_id;
+  return null;
 }
 
 export async function GET(req: Request) {
@@ -47,7 +56,7 @@ export async function PATCH(req: Request) {
     const { id, readAll } = await req.json();
 
     if (readAll) {
-      db.prepare('UPDATE notifications SET is_read = 1 WHERE user_id = ?').run(userId);
+      db.prepare('UPDATE notifications SET is_read = 1 WHERE user_id = ? OR user_id IS NULL').run(userId);
     } else if (id) {
       db.prepare('UPDATE notifications SET is_read = 1 WHERE id = ?').run(id);
     }

@@ -106,12 +106,12 @@ export default function ChatInterface() {
     try {
       const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
       if (!apiKey) throw new Error("API Key missing");
-      
+
       const ai = new GoogleGenAI({ apiKey });
       const model = "gemini-3-flash-preview";
 
       let promptParts: any[] = [{ text: input || "Analyze this crop image and provide agricultural advice." }];
-      
+
       if (userMessage.image) {
         const base64Data = userMessage.image.split(',')[1];
         promptParts.push({
@@ -197,19 +197,18 @@ export default function ChatInterface() {
               className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div
-                className={`max-w-[80%] p-3 rounded-2xl ${
-                  m.role === 'user'
-                    ? 'bg-emerald-600 text-white rounded-tr-none'
-                    : 'bg-white border border-black/5 text-gray-800 rounded-tl-none shadow-sm'
-                }`}
+                className={`max-w-[80%] p-3 rounded-2xl ${m.role === 'user'
+                  ? 'bg-emerald-600 text-white rounded-tr-none'
+                  : 'bg-white border border-black/5 text-gray-800 rounded-tl-none shadow-sm'
+                  }`}
               >
                 {m.image && (
                   <div className="relative w-full h-48 mb-2">
-                    <Image 
-                      src={m.image} 
-                      alt="Uploaded" 
-                      fill 
-                      className="object-cover rounded-lg" 
+                    <Image
+                      src={m.image}
+                      alt="Uploaded"
+                      fill
+                      className="object-cover rounded-lg"
                       referrerPolicy="no-referrer"
                     />
                   </div>
@@ -237,11 +236,11 @@ export default function ChatInterface() {
         {selectedImage && (
           <div className="mb-2 relative inline-block">
             <div className="relative w-20 h-20">
-              <Image 
-                src={selectedImage} 
-                alt="Preview" 
-                fill 
-                className="object-cover rounded-lg border border-emerald-200" 
+              <Image
+                src={selectedImage}
+                alt="Preview"
+                fill
+                className="object-cover rounded-lg border border-emerald-200"
                 referrerPolicy="no-referrer"
               />
             </div>

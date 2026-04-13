@@ -169,13 +169,12 @@ function AuthModal({
               <button
                 key={r}
                 onClick={() => { setRole(r); setError(''); }}
-                className={`flex-1 py-2 rounded-xl text-sm font-bold capitalize transition-all ${
-                  role === r
+                className={`flex-1 py-2 rounded-xl text-sm font-bold capitalize transition-all ${role === r
                     ? r === 'seller'
                       ? 'bg-emerald-600 text-white shadow-sm'
                       : 'bg-blue-600 text-white shadow-sm'
                     : 'text-slate-500 hover:text-slate-700'
-                }`}
+                  }`}
               >
                 {r === 'seller' ? <><Store className="inline w-3.5 h-3.5 mr-1" /> Seller</> : <><ShoppingCart className="inline w-3.5 h-3.5 mr-1" /> Buyer</>}
               </button>
@@ -195,8 +194,8 @@ function AuthModal({
             {mode === 'login'
               ? `Sign in to your ${role} account`
               : role === 'seller'
-              ? 'List your crops and connect with buyers'
-              : 'Find the best crop deals from local farmers'}
+                ? 'List your crops and connect with buyers'
+                : 'Find the best crop deals from local farmers'}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-3">
@@ -275,9 +274,8 @@ function AuthModal({
             <button
               type="submit"
               disabled={loading}
-              className={`w-full py-3 rounded-xl font-bold text-white transition-colors flex items-center justify-center gap-2 disabled:opacity-70 ${
-                role === 'seller' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-600 hover:bg-blue-700'
-              }`}
+              className={`w-full py-3 rounded-xl font-bold text-white transition-colors flex items-center justify-center gap-2 disabled:opacity-70 ${role === 'seller' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-600 hover:bg-blue-700'
+                }`}
             >
               {loading && <Loader2 size={18} className="animate-spin" />}
               {mode === 'login' ? 'Sign In' : 'Create Account'}
@@ -356,27 +354,27 @@ function AddListingModal({ onClose, onSuccess }: { onClose: () => void; onSucces
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Crop Name</label>
-            <input type="text" required value={form.crop} onChange={e => setForm({...form, crop: e.target.value})}
+            <input type="text" required value={form.crop} onChange={e => setForm({ ...form, crop: e.target.value })}
               className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none text-sm"
               placeholder="e.g. Maize, Coffee, Matooke" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Quantity (kg)</label>
-              <input type="number" required min="0.1" step="0.1" value={form.quantity_kg} onChange={e => setForm({...form, quantity_kg: e.target.value})}
+              <input type="number" required min="0.1" step="0.1" value={form.quantity_kg} onChange={e => setForm({ ...form, quantity_kg: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none text-sm"
                 placeholder="500" />
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Price/kg (UGX)</label>
-              <input type="number" required min="1" value={form.price_per_kg} onChange={e => setForm({...form, price_per_kg: e.target.value})}
+              <input type="number" required min="1" value={form.price_per_kg} onChange={e => setForm({ ...form, price_per_kg: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none text-sm"
                 placeholder="1200" />
             </div>
           </div>
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Description (optional)</label>
-            <textarea value={form.description} onChange={e => setForm({...form, description: e.target.value})}
+            <textarea value={form.description} onChange={e => setForm({ ...form, description: e.target.value })}
               className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none text-sm resize-none"
               rows={2} placeholder="Grade A, freshly harvested..." />
           </div>
@@ -451,27 +449,27 @@ function AddBuyOrderModal({
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Crop Name</label>
-            <input type="text" required value={form.crop} onChange={e => setForm({...form, crop: e.target.value})}
+            <input type="text" required value={form.crop} onChange={e => setForm({ ...form, crop: e.target.value })}
               className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm"
               placeholder="e.g. Maize, Coffee, Matooke" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Quantity (kg)</label>
-              <input type="number" required min="0.1" step="0.1" value={form.quantity_kg} onChange={e => setForm({...form, quantity_kg: e.target.value})}
+              <input type="number" required min="0.1" step="0.1" value={form.quantity_kg} onChange={e => setForm({ ...form, quantity_kg: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm"
                 placeholder="200" />
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Max Price/kg (UGX)</label>
-              <input type="number" required min="1" value={form.max_price_per_kg} onChange={e => setForm({...form, max_price_per_kg: e.target.value})}
+              <input type="number" required min="1" value={form.max_price_per_kg} onChange={e => setForm({ ...form, max_price_per_kg: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm"
                 placeholder="1500" />
             </div>
           </div>
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Notes (optional)</label>
-            <textarea value={form.description} onChange={e => setForm({...form, description: e.target.value})}
+            <textarea value={form.description} onChange={e => setForm({ ...form, description: e.target.value })}
               className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none text-sm resize-none"
               rows={2} placeholder="Preferred grade, delivery notes..." />
           </div>
@@ -732,11 +730,10 @@ export default function Marketplace() {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as any)}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
-                activeTab === tab.key
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all ${activeTab === tab.key
                   ? 'bg-white text-slate-800 shadow-sm'
                   : 'text-slate-500 hover:text-slate-700 hover:bg-white/60'
-              }`}
+                }`}
             >
               <tab.icon size={13} />
               {tab.label}
@@ -999,10 +996,10 @@ export default function Marketplace() {
                             </span>
                           </div>
                         </div>
-                        
+
                         {trade.status === 'pending' && (
                           <div className="mt-4 flex justify-end">
-                            <button 
+                            <button
                               onClick={() => markTradeCompleted(trade.id)}
                               className="px-4 py-1.5 bg-white border border-slate-200 text-slate-700 rounded-xl text-xs font-bold hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-700 transition-all flex items-center gap-1.5 shadow-sm"
                             >

@@ -1,0 +1,29 @@
+{
+  "place_id": 37621827,
+  "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+  "osm_type": "node",
+  "osm_id": 2384158511,
+  "lat": "0.3164853",
+  "lon": "32.5821049",
+  "class": "amenity",
+  "type": "nightclub",
+  "place_rank": 30,
+  "importance": 0.00006725490196073881,
+  "addresstype": "amenity",
+  "name": "",
+  "display_name": "Ternan Avenue, Nakasero, Central, Kampala Capital City, Kampala, Uganda",
+  "address": {
+    "road": "Ternan Avenue",
+    "suburb": "Nakasero",
+    "city": "Kampala Capital City",
+    "ISO3166-2-lvl4": "UG-102",
+    "country": "Uganda",
+    "country_code": "ug"
+  },
+  "boundingbox": [
+    "0.3164353",
+    "0.3165353",
+    "32.5820549",
+    "32.5821549"
+  ]
+}

@@ -26,7 +26,7 @@ export default function MarketPrices() {
     async function fetchPrices() {
       try {
         const response = await fetch('/api/market-prices');
-        
+
         let result;
         try {
           const text = await response.text();
@@ -56,7 +56,7 @@ export default function MarketPrices() {
                 title: 'Market Opportunity',
                 message: `${topTrend.crop} prices are up ${topTrend.change}. It's a great time to list your harvest!`
               })
-            }).catch(() => {});
+            }).catch(() => { });
           }
         }
       } catch (err: any) {
@@ -96,7 +96,7 @@ export default function MarketPrices() {
       if (!response.ok) {
         throw new Error(data.error || 'Failed to fetch market data for this crop');
       }
-      
+
       setMarketData(prev => {
         const exists = prev.find(c => c.crop.toLowerCase() === data.crop.toLowerCase());
         if (exists) {
@@ -104,7 +104,7 @@ export default function MarketPrices() {
         }
         return [data, ...prev];
       });
-      
+
       setSelectedCrop(data.crop);
       setSearchQuery('');
       sendGAEvent({ event: 'market_trend_search', value: data.crop });
@@ -176,23 +176,21 @@ export default function MarketPrices() {
 
       <div className="space-y-2 mb-8">
         {marketData.map((item) => (
-          <div 
-            key={item.crop} 
+          <div
+            key={item.crop}
             onClick={() => {
               setSelectedCrop(item.crop);
               sendGAEvent({ event: 'market_trend_view', value: item.crop });
             }}
-            className={`flex items-center justify-between p-3 rounded-xl transition-colors border cursor-pointer ${
-              selectedCrop === item.crop 
-                ? 'bg-indigo-50 border-indigo-100' 
+            className={`flex items-center justify-between p-3 rounded-xl transition-colors border cursor-pointer ${selectedCrop === item.crop
+                ? 'bg-indigo-50 border-indigo-100'
                 : 'border-transparent hover:bg-gray-50 hover:border-black/5'
-            }`}
+              }`}
           >
             <div className="flex items-center gap-3">
-              <div className={`w-2 h-2 rounded-full ${
-                item.trend === 'up' ? 'bg-emerald-500' : 
-                item.trend === 'down' ? 'bg-red-500' : 'bg-gray-400'
-              }`} />
+              <div className={`w-2 h-2 rounded-full ${item.trend === 'up' ? 'bg-emerald-500' :
+                  item.trend === 'down' ? 'bg-red-500' : 'bg-gray-400'
+                }`} />
               <span className={`font-medium ${selectedCrop === item.crop ? 'text-indigo-900' : 'text-gray-700'}`}>
                 {item.crop}
               </span>
@@ -201,12 +199,11 @@ export default function MarketPrices() {
               <span className={`text-sm font-mono font-bold ${selectedCrop === item.crop ? 'text-indigo-900' : 'text-gray-900'}`}>
                 {item.price.toLocaleString()}
               </span>
-              <div className={`flex items-center gap-1 text-xs font-bold ${
-                item.trend === 'up' ? 'text-emerald-600' : 
-                item.trend === 'down' ? 'text-red-600' : 'text-gray-500'
-              }`}>
-                {item.trend === 'up' ? <TrendingUp size={12} /> : 
-                 item.trend === 'down' ? <TrendingDown size={12} /> : <Minus size={12} />}
+              <div className={`flex items-center gap-1 text-xs font-bold ${item.trend === 'up' ? 'text-emerald-600' :
+                  item.trend === 'down' ? 'text-red-600' : 'text-gray-500'
+                }`}>
+                {item.trend === 'up' ? <TrendingUp size={12} /> :
+                  item.trend === 'down' ? <TrendingDown size={12} /> : <Minus size={12} />}
                 {item.change}
               </div>
             </div>
@@ -221,26 +218,26 @@ export default function MarketPrices() {
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={currentCropData.historical}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                <XAxis 
-                  dataKey="month" 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fontSize: 10, fill: '#9ca3af' }} 
+                <XAxis
+                  dataKey="month"
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fontSize: 10, fill: '#9ca3af' }}
                 />
-                <YAxis 
-                  hide 
-                  domain={['dataMin - 100', 'dataMax + 100']} 
+                <YAxis
+                  hide
+                  domain={['dataMin - 100', 'dataMax + 100']}
                 />
-                <Tooltip 
+                <Tooltip
                   contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}
                   labelStyle={{ fontWeight: 'bold', color: '#374151', marginBottom: '4px' }}
                   itemStyle={{ color: '#4f46e5', fontWeight: 'bold' }}
                   formatter={(value: any) => [`UGX ${Number(value).toLocaleString()}`, 'Price']}
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="price" 
-                  stroke="#4f46e5" 
+                <Line
+                  type="monotone"
+                  dataKey="price"
+                  stroke="#4f46e5"
                   strokeWidth={3}
                   dot={{ r: 4, fill: '#4f46e5', strokeWidth: 2, stroke: '#fff' }}
                   activeDot={{ r: 6, fill: '#4f46e5', strokeWidth: 0 }}

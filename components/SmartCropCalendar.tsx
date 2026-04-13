@@ -42,7 +42,7 @@ export default function SmartCropCalendar() {
     try {
       const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
       if (!apiKey) throw new Error("API Key missing");
-      
+
       const ai = new GoogleGenAI({ apiKey });
       const prompt = `Act as an expert agronomist. I am planting ${formData.crop} in ${formData.region} on ${formData.plantingDate}. 
       
@@ -123,11 +123,11 @@ Make the advice highly actionable for a smallholder farmer.`;
           <form onSubmit={handleSubmit} className="space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-200">
             <div>
               <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Crop Type</label>
-              <input 
-                type="text" 
-                name="crop" 
-                value={formData.crop} 
-                onChange={handleChange} 
+              <input
+                type="text"
+                name="crop"
+                value={formData.crop}
+                onChange={handleChange}
                 placeholder="e.g., Maize, Beans, Coffee"
                 className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
                 required
@@ -135,29 +135,29 @@ Make the advice highly actionable for a smallholder farmer.`;
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Planting Date</label>
-              <input 
-                type="date" 
-                name="plantingDate" 
-                value={formData.plantingDate} 
-                onChange={handleChange} 
-                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" 
-                required 
+              <input
+                type="date"
+                name="plantingDate"
+                value={formData.plantingDate}
+                onChange={handleChange}
+                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
+                required
               />
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1">Region</label>
-              <input 
-                type="text" 
-                name="region" 
-                value={formData.region} 
-                onChange={handleChange} 
+              <input
+                type="text"
+                name="region"
+                value={formData.region}
+                onChange={handleChange}
                 placeholder="e.g., Central Uganda"
-                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" 
-                required 
+                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
+                required
               />
             </div>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               disabled={loading}
               className="w-full bg-indigo-600 text-white rounded-xl py-3 font-bold text-sm hover:bg-indigo-700 transition-colors disabled:opacity-70 flex items-center justify-center gap-2 mt-2"
             >
@@ -190,8 +190,8 @@ Make the advice highly actionable for a smallholder farmer.`;
           )}
 
           {data && !loading && (
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }} 
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               className="space-y-6"
             >
@@ -208,7 +208,7 @@ Make the advice highly actionable for a smallholder farmer.`;
 
               <div className="relative border-l-2 border-slate-200 ml-4 space-y-8 pb-4">
                 {data.tasks.map((task, index) => (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -218,7 +218,7 @@ Make the advice highly actionable for a smallholder farmer.`;
                     <div className={`absolute -left-[17px] top-1 w-8 h-8 rounded-full flex items-center justify-center border-4 border-white ${task.isCritical ? 'bg-red-500 text-white' : 'bg-indigo-100 text-indigo-600'}`}>
                       {getPhaseIcon(task.phase)}
                     </div>
-                    
+
                     <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                         <span className="text-xs font-bold text-slate-500 uppercase tracking-wider bg-slate-100 px-2 py-1 rounded-md">

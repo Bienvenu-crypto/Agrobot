@@ -76,7 +76,7 @@ export default function NotificationBell() {
 
   return (
     <div className="relative" ref={containerRef}>
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="cursor-pointer p-2 text-slate-400 hover:text-emerald-600 transition-all active:scale-95 relative group"
       >
@@ -90,7 +90,7 @@ export default function NotificationBell() {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -116,8 +116,8 @@ export default function NotificationBell() {
               {notifications.length > 0 ? (
                 <div className="divide-y divide-slate-50">
                   {notifications.map((n) => (
-                    <div 
-                      key={n.id} 
+                    <div
+                      key={n.id}
                       onClick={() => markAsRead(n.id)}
                       className={`p-4 hover:bg-slate-50 transition-colors cursor-pointer group ${n.is_read === 0 ? 'bg-emerald-50/30' : ''}`}
                     >
