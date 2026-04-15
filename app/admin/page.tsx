@@ -135,7 +135,7 @@ export default function AdminDashboard() {
               <Shield size={40} className="drop-shadow-sm" />
             </div>
           </div>
-          <h1 className="text-2xl font-black text-center text-slate-900 mb-2 tracking-tight">AgroBot Admin</h1>
+          <h1 className="text-2xl font-black text-center text-slate-900 mb-2 tracking-tight">Admin Panel</h1>
           <p className="text-slate-500 text-center mb-8 text-sm px-4">Secure gateway to manage agricultural interactions</p>
 
           <form onSubmit={handleLogin} className="space-y-4">
@@ -168,8 +168,8 @@ export default function AdminDashboard() {
         setIsMobileMenuOpen(false);
       }}
       className={`w-full flex items-center gap-3 px-5 py-3.5 rounded-2xl font-bold transition-all relative group ${activeTab === id
-          ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/30'
-          : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800'
+        ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/30'
+        : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800'
         }`}
     >
       <Icon size={18} strokeWidth={activeTab === id ? 2.5 : 2} />

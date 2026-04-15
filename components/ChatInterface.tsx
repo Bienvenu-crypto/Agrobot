@@ -23,7 +23,7 @@ export default function ChatInterface() {
     {
       id: '1',
       role: 'bot',
-      content: "Hello! I am AgroBot, your AI farming assistant. I can help you in English, Luganda, Swahili, or Kinyarwanda. How can I help you with your crops today?",
+      content: "Hello! I am your AI farming assistant. I can help you in English, Luganda, Swahili, or Kinyarwanda. How can I help you with your crops today?",
     },
   ]);
   const [input, setInput] = useState('');
