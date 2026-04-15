@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'AgroBot | AI-Powered Smart Agriculture',
+  title: 'Adaptive Agriculture Management System | AI-Powered Smart Agriculture',
   description: 'Real-time farmer support and decision intelligence for Ugandan smallholder farmers.',
 };
 

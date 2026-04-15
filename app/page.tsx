@@ -47,10 +47,7 @@ export default function Page() {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/5 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between relative">
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="bg-emerald-600 p-2 rounded-xl text-white">
-              <Sprout size={24} />
-            </div>
-            <span className="text-xl font-bold tracking-tight text-emerald-900">AgroBot</span>
+            <span className="text-xl font-bold tracking-tight text-emerald-900">Adaptive Agriculture Management System</span>
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
@@ -297,12 +294,9 @@ export default function Page() {
       <footer className="bg-white border-t border-black/5 mt-20 py-12 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="bg-emerald-600 p-1.5 rounded-lg text-white">
-              <Sprout size={16} />
-            </div>
-            <span className="text-lg font-bold tracking-tight text-emerald-900">AgroBot</span>
+            <span className="text-lg font-bold tracking-tight text-emerald-900">Adaptive Agriculture Management System</span>
           </div>
-          <p className="text-slate-400 text-sm">© 2026 AgroBot. Built for Bugema University Software Engineering.</p>
+          <p className="text-slate-400 text-sm">© 2026 Adaptive Agriculture Management System. Built for Bugema University Software Engineering.</p>
           <div className="flex gap-6 text-slate-400 text-sm">
             <button className="cursor-pointer hover:text-emerald-600">Privacy</button>
             <button className="cursor-pointer hover:text-emerald-600">Terms</button>

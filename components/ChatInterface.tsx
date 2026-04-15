@@ -23,7 +23,7 @@ export default function ChatInterface() {
     {
       id: '1',
       role: 'bot',
-      content: "Hello! I am your AI farming assistant. I can help you in English, Luganda, Swahili, or Kinyarwanda. How can I help you with your crops today?",
+      content: "Hello! I am your Adaptive Agriculture Management System advisor. I can help you in English, Luganda, Swahili, or Kinyarwanda. How can I help you with your crops today?",
     },
   ]);
   const [input, setInput] = useState('');
@@ -73,7 +73,7 @@ export default function ChatInterface() {
   const handleSend = async () => {
     if ((!input.trim() && !selectedImage) || isLoading) return;
 
-    const userEmail = user ? user.email : 'anonymous@agrobot.local';
+    const userEmail = user ? user.email : 'anonymous@aams.local';
 
     const userMessage: Message = {
       id: crypto.randomUUID(),
@@ -180,7 +180,7 @@ export default function ChatInterface() {
             <Bot size={24} />
           </div>
           <div>
-            <h2 className="font-semibold text-emerald-900">AgroBot Advisor</h2>
+            <h2 className="font-semibold text-emerald-900">System Advisor</h2>
             <p className="text-xs text-emerald-700">Online • Expert AI Support</p>
           </div>
         </div>
@@ -224,7 +224,7 @@ export default function ChatInterface() {
           <div className="flex justify-start">
             <div className="bg-white border border-black/5 p-3 rounded-2xl rounded-tl-none flex items-center gap-2">
               <Loader2 className="animate-spin text-emerald-600" size={16} />
-              <span className="text-xs text-gray-500">AgroBot is thinking...</span>
+              <span className="text-xs text-gray-500">System is thinking...</span>
             </div>
           </div>
         )}
